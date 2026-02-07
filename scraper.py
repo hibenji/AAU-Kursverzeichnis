@@ -40,7 +40,7 @@ load_env()
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
     'user': os.getenv('DB_USER', 'aau'),
-    'password': os.getenv('DB_PASS', '2@)o27jng[2_dGmq'),
+    'password': os.getenv('DB_PASS', 'password'),
     'database': os.getenv('DB_NAME', 'aau')
 }
 
