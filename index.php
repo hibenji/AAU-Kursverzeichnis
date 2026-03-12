@@ -10,6 +10,10 @@
 <body>
     <header class="header">
         <div class="header-content">
+            <nav class="header-nav">
+                <a href="/" class="nav-link nav-active">Kurse</a>
+                <a href="/stats.php" class="nav-link">Notenstatistiken</a>
+            </nav>
             <h1>AAU Kursverzeichnis</h1>
             <p class="subtitle">Alle Lehrveranstaltungen durchsuchen und filtern</p>
         </div>
