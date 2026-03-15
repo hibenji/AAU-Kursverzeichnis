@@ -124,8 +124,47 @@ def scrape_semester(semester, connection):
     except Exception as e:
         print(f"Error scraping {semester}: {e}")
 
+def generate_semesters(since='09W'):
+    """Generate semester codes from 'since' up to current (26S), newest first.
+    
+    Format: YYW (winter) and YYS (summer), e.g. 09W, 10S, 10W, 11S, ...
+    """
+    import argparse
+    since_year = int(since[:2])
+    since_season = since[2]
+    
+    semesters = []
+    for year in range(since_year, 27):  # up to 26
+        if year == since_year and since_season == 'W':
+            semesters.append(f"{year:02d}W")
+        else:
+            semesters.append(f"{year:02d}S")
+            semesters.append(f"{year:02d}W")
+    # Add 26S but not 26W (future)
+    if since_year <= 26 and '26S' not in semesters:
+        semesters.append('26S')
+    
+    # Remove any semesters before 'since'
+    try:
+        idx = semesters.index(since)
+        semesters = semesters[idx:]
+    except ValueError:
+        pass
+    
+    # Newest first
+    semesters.reverse()
+    return semesters
+
 def main():
-    semesters = ['26S', '25W', '25S', '24W', '24S', '23W']
+    import argparse
+    parser = argparse.ArgumentParser(description='AAU Simple Course List Scraper')
+    parser.add_argument('--since', default='09W',
+                        help='Oldest semester to scrape (default: 09W). Format: YYS or YYW')
+    args = parser.parse_args()
+    
+    semesters = generate_semesters(args.since)
+    print(f"Will scrape {len(semesters)} semesters: {semesters[0]} ... {semesters[-1]}")
+    
     try:
         connection = mysql.connector.connect(**DB_CONFIG)
         create_table(connection)

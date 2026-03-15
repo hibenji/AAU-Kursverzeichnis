@@ -13,6 +13,8 @@
             <nav class="header-nav">
                 <a href="/" class="nav-link">Kurse</a>
                 <a href="/stats.php" class="nav-link nav-active">Notenstatistiken</a>
+                <a href="/history.php" class="nav-link">Kursverlauf</a>
+                <a href="/scrape.php" class="nav-link">Scrape Manager</a>
             </nav>
             <h1>Notenstatistiken</h1>
             <p class="subtitle">Notenverteilung und Durchschnittsnoten aller Lehrveranstaltungen</p>
@@ -70,6 +72,8 @@
                     <option value="numberOfGrades:asc">Wenigste Benotungen</option>
                     <option value="title:asc">Titel A–Z</option>
                     <option value="title:desc">Titel Z–A</option>
+                    <option value="semester:desc">Neuestes Semester zuerst</option>
+                    <option value="semester:asc">Ältestes Semester zuerst</option>
                 </select>
             </div>
 

@@ -13,6 +13,8 @@
             <nav class="header-nav">
                 <a href="/" class="nav-link nav-active">Kurse</a>
                 <a href="/stats.php" class="nav-link">Notenstatistiken</a>
+                <a href="/history.php" class="nav-link">Kursverlauf</a>
+                <a href="/scrape.php" class="nav-link">Scrape Manager</a>
             </nav>
             <h1>AAU Kursverzeichnis</h1>
             <p class="subtitle">Alle Lehrveranstaltungen durchsuchen und filtern</p>
