@@ -315,7 +315,7 @@ function renderTrendChart(labels, avgData, professors) {
     });
 }
 
-const profColors = ['#6366f1', '#8b5cf6', '#ec4899', '#14b8a6', '#f59e0b', '#06b6d4', '#f97316', '#84cc16', '#ef4444', '#10b981'];
+const profColors = ['#92a8d1', '#f7cac9', '#b8dbd3', '#aa6f73', '#eea990', '#005b96', '#967259', '#e8d174', '#c9df8a', '#10b981'];
 let profChart = null;
 
 function renderProfessors(semesters) {
