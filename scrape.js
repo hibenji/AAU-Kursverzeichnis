@@ -26,7 +26,12 @@ const els = {
     progressOverlay: document.getElementById('scrape-progress'),
     progressFill: document.getElementById('progress-fill'),
     progressText: document.getElementById('progress-text'),
-    progressLog: document.getElementById('progress-log')
+    progressLog: document.getElementById('progress-log'),
+    cookieModal: document.getElementById('cookie-modal'),
+    openCookieBtn: document.getElementById('open-cookie-modal'),
+    closeCookieBtn: document.getElementById('close-cookie-modal'),
+    saveCookieBtn: document.getElementById('save-cookie'),
+    newCookieInput: document.getElementById('new-cookie')
 };
 
 function debounce(fn, delay) {
@@ -358,6 +363,52 @@ els.pagination.addEventListener('click', e => {
 els.progressOverlay.addEventListener('click', e => {
     if (e.target === els.progressOverlay) {
         els.progressOverlay.style.display = 'none';
+    }
+});
+
+// Cookie modal events
+els.openCookieBtn.addEventListener('click', () => {
+    els.cookieModal.style.display = 'flex';
+    els.newCookieInput.focus();
+});
+
+els.closeCookieBtn.addEventListener('click', () => {
+    els.cookieModal.style.display = 'none';
+});
+
+els.cookieModal.addEventListener('click', e => {
+    if (e.target === els.cookieModal) {
+        els.cookieModal.style.display = 'none';
+    }
+});
+
+els.saveCookieBtn.addEventListener('click', async () => {
+    const cookie = els.newCookieInput.value.trim();
+    if (!cookie) return alert('Bitte Cookie eingeben');
+
+    els.saveCookieBtn.disabled = true;
+    els.saveCookieBtn.textContent = 'Speichert...';
+
+    try {
+        const res = await fetch('api/update_cookie.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cookie })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            alert('Cookie erfolgreich aktualisiert!');
+            els.cookieModal.style.display = 'none';
+            els.newCookieInput.value = '';
+        } else {
+            alert('Fehler: ' + (data.error || 'Unbekannter Fehler'));
+        }
+    } catch (e) {
+        alert('Netzwerkfehler: ' + e.message);
+    } finally {
+        els.saveCookieBtn.disabled = false;
+        els.saveCookieBtn.textContent = 'Speichern';
     }
 });
 

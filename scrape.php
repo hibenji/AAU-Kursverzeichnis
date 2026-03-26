@@ -102,6 +102,9 @@ $isAuthed = checkScrapeAuth();
             </nav>
             <h1>Scrape Manager</h1>
             <p class="subtitle">Kurse auswählen und Notenstatistiken scrapen</p>
+            <div style="margin-top: 1rem;">
+                <button id="open-cookie-modal" class="btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">🍪 Cookie aktualisieren</button>
+            </div>
         </div>
     </header>
 
@@ -177,6 +180,21 @@ $isAuthed = checkScrapeAuth();
                     </div>
                     <p class="scrape-progress-text" id="progress-text">Wird vorbereitet...</p>
                     <div class="scrape-progress-log" id="progress-log"></div>
+                </div>
+            </div>
+
+            <!-- Cookie update modal -->
+            <div class="scrape-progress-overlay" id="cookie-modal" style="display:none;">
+                <div class="scrape-progress-card">
+                    <h3>Cookie aktualisieren</h3>
+                    <p class="subtitle" style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-secondary);">Neuen SESSION-Cookie hier einfügen:</p>
+                    <div class="filter-group" style="margin-bottom: 0;">
+                        <input type="text" id="new-cookie" placeholder="SESSION=..." style="width: 100%; padding: 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);">
+                    </div>
+                    <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; justify-content: flex-end;">
+                        <button id="close-cookie-modal" class="btn-secondary" style="margin: 0;">Abbrechen</button>
+                        <button id="save-cookie" class="btn-primary" style="margin: 0;">Speichern</button>
+                    </div>
                 </div>
             </div>
         </section>
